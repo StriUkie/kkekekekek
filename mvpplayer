@@ -1,0 +1,103 @@
+local players = game:GetService("Players")
+local run_service = game:GetService("RunService")
+local replicated_storage = game:GetService("ReplicatedStorage")
+
+local local_player = game.Players.LocalPlayer
+--local VRHANDS_ragdoll_event = game:GetService("ReplicatedStorage").COM.Ragdoll.Request --replicated_storage.RagdollEvent
+local ragdoll_event = replicated_storage.RagdollEvent
+
+local character = local_player.Character
+
+local offset = 1 --2147483647
+local root_part = character.HumanoidRootPart
+local old_cframe = root_part.CFrame
+
+local head = character.Head
+local upper_torso = character.UpperTorso
+local lower_torso = character.LowerTorso
+
+local right_upper_arm = character.RightUpperArm
+local right_lower_arm = character.RightLowerArm
+local right_hand = character.RightHand
+
+local left_upper_arm = character.LeftUpperArm
+local left_lower_arm = character.LeftLowerArm
+local left_hand = character.LeftHand
+
+local right_upper_leg = character.RightUpperLeg
+local right_lower_leg = character.RightLowerLeg
+local right_foot = character.RightFoot
+
+local left_upper_leg = character.LeftUpperLeg
+local left_lower_leg = character.LeftLowerLeg
+local left_foot = character.LeftFoot
+
+
+ragdoll_event:FireServer()
+--[[]
+--VR HANDS ONLY
+local Ragdoll_loop = run_service.Heartbeat:Connect(function() 
+    VRHANDS_ragdoll_event:FireServer() 
+end)
+--]]
+--[[]
+upper_torso:WaitForChild("BallSocketConstraint")
+
+run_service.Heartbeat:Connect(function()
+    --old_cframe = old_cframe:lerp(old_cframe * CFrame.Angles(0, math.rad(360 * tick()), 0), 0.5)
+    head.CFrame = old_cframe * CFrame.new(0, offset / 5, 0)
+    upper_torso.CFrame = old_cframe * CFrame.new(0, offset, 0)
+    lower_torso.CFrame = head.CFrame
+
+    right_upper_arm.CFrame = old_cframe * CFrame.new(offset, offset, 0)
+    right_lower_arm.CFrame = old_cframe * CFrame.new(0, offset * 2, 0)
+    right_hand.CFrame = right_lower_arm.CFrame
+
+    left_upper_arm.CFrame = old_cframe * CFrame.new(offset, offset, 0)
+    left_lower_arm.CFrame = old_cframe * CFrame.new(0, offset * 2, 0)
+    left_hand.CFrame = left_lower_arm.CFrame
+
+    right_upper_leg.CFrame = old_cframe * CFrame.new(offset, offset, 0)
+    right_lower_leg.CFrame = old_cframe * CFrame.new(0, offset - 2, 0)
+    --right_foot.CFrame = old_cframe * CFrame.new(offset / 4, -offset - 6, 0)
+
+    left_upper_leg.CFrame = old_cframe * CFrame.new(offset, offset, 0)
+    left_lower_leg.CFrame = old_cframe * CFrame.new(0, offset - 2, 0)
+end)
+]]
+
+local X = 0
+local Y = 1000
+local Z = 0
+
+upper_torso:WaitForChild("BallSocketConstraint")
+--[[]]
+local con = run_service.Heartbeat:Connect(function()
+    --old_cframe = old_cframe:lerp(old_cframe * CFrame.Angles(0, math.rad(360 * tick()), 0), 0.5)
+    --BASE
+    head.CFrame = old_cframe * CFrame.new (0, 0 / 5, 0) --(148.09954833984375, 308.3127746582031, 159.12734985351562)
+    upper_torso.CFrame = old_cframe * CFrame.new(148.09954833984375, 10006.75067138671875, 159.12734985351562)
+    lower_torso.CFrame = old_cframe * CFrame.new(148.09954833984375, 5.376220703125, 159.12734985351562) --head.CFrame
+    root_part.CFrame = head.CFrame
+    --Left LEGS.
+    left_upper_leg.CFrame = old_cframe * CFrame.new (147.8377227783203, 10004.43603515625, 10058.67379760742188)
+    left_lower_leg.CFrame = old_cframe * CFrame.new (147.8310546875, 3.2025146484375, 5058.67379760742188)
+    left_foot.CFrame = old_cframe * CFrame.new (147.8256378173828, 2.2017517089844, 258.67379760742188)
+    --Right LEGS. 
+    right_upper_leg.CFrame = old_cframe * CFrame.new (148.3603515625, 10004.4360046386719, -10059.57920837402344)
+    right_lower_leg.CFrame = old_cframe * CFrame.new (148.365234375, 3.2024230957031, -5059.57920837402344)
+    right_foot.CFrame = old_cframe * CFrame.new (148.36917114257812, 2.2016296386719, 59.57920837402344)
+    --Left ARMS. 
+    left_upper_arm.CFrame = old_cframe * CFrame.new (147.8377227783203, 304.43603515625, 258.67379760742188) --(147.29742431640625, 306.9759521484375, 157.7378692626953)
+    left_lower_arm.CFrame = old_cframe * CFrame.new (147.8310546875, 103.2025146484375, 258.67379760742188) -- (147.29354858398438, 306.1407470703125, 157.7311553955078)
+    left_hand.CFrame = old_cframe * CFrame.new (147.8256378173828, 2.2017517089844, 258.67379760742188) --(147.2913360595703, 305.28076171875, 157.72732543945312)
+    --Right ARMS. 
+    right_upper_arm.CFrame = old_cframe * CFrame.new (148.3603515625, 304.4360046386719, 59.57920837402344) --(148.9012451171875, 306.9750671386719, 160.51608276367188)
+    right_lower_arm.CFrame = old_cframe * CFrame.new (148.365234375, 103.2024230957031, 59.57920837402344) --(148.9030303955078, 306.1398620605469, 160.51918029785156)
+    right_hand.CFrame = old_cframe * CFrame.new (148.36917114257812, 2.2016296386719, 59.57920837402344) --(148.90118408203125, 305.2798767089844, 160.5159912109375)
+end)
+--Reseting after die
+humanoid.Died:Once(function()
+    con:Disconnect()
+    --Ragdoll_loop:Disconnect()
+end)
