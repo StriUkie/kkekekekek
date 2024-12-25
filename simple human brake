@@ -6,7 +6,7 @@ local Window = Library.CreateLib("ӄᴇᴋs⛧ sᴏ̨ᴜᴀᴅ༶", "Serpent")
 
 
     MainSection:NewButton("HumanBreak", "3d clothing bug", function()
-        loadstring(game:HttpGet('hhttps://raw.githubusercontent.com/StriUkie/kkekekekek/refs/heads/main/mvpplayer'))()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/StriUkie/kkekekekek/refs/heads/main/mvpplayer'))()
     end)
     
     --credits
